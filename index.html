@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atul Tiwari - Neon Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@300;400;700&display=swap');
+
+        :root {
+            --bg-color: #0a0a1a;
+            --neon-blue: #00f0ff;
+            --neon-pink: #ff00ff;
+            --neon-green: #0fff95;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-blue) var(--bg-color);
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Neon Glow Effect */
+        .neon-glow {
+            text-shadow: 
+                0 0 7px var(--neon-blue),
+                0 0 10px var(--neon-blue),
+                0 0 21px var(--neon-blue),
+                0 0 42px var(--neon-blue),
+                0 0 82px var(--neon-blue),
+                0 0 92px var(--neon-blue),
+                0 0 102px var(--neon-blue),
+                0 0 151px var(--neon-blue);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        /* Cyberpunk Background Effect */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(rgba(30, 30, 80, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 30, 80, 0.3) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.7);
+            border: 2px solid var(--neon-blue);
+            padding: 3rem;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px rgba(0,240,255,0.5);
+        }
+
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                transparent 0,
+                transparent 7px,
+                var(--neon-blue) 10px,
+                var(--neon-blue) 12px
+            );
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(1turn);
+            }
+        }
+
+        .profile-info {
+            z-index: 1;
+            position: relative;
+        }
+
+        .profile h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-blue);
+        }
+
+        .profile-subtitle {
+            font-size: 1.2rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .section {
+            background: rgba(0,0,0,0.7);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--neon-pink);
+            box-shadow: 
+                0 0 10px var(--neon-pink),
+                0 0 20px rgba(255,0,255,0.5);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-pink);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-pink));
+        }
+
+        .skills-list, .goals-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag, .goal-tag {
+            background-color: rgba(0,240,255,0.1);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag:hover, .goal-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 5px var(--neon-blue),
+                0 0 15px rgba(0,240,255,0.5);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            color: var(--neon-green);
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .contact-links a:hover {
+            transform: scale(1.2);
+            color: var(--neon-blue);
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue);
+        }
+
+        .contact-info {
+            background: rgba(0,0,0,0.7);
+            border: 2px solid var(--neon-green);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-info p {
+            color: var(--neon-green);
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="container">
+        <section class="profile neon-glow">
+            <div class="profile-info">
+                <h1 class="neon-glow">Atul Tiwari</h1>
+                <p class="profile-subtitle">B.Tech in CSE | Aspiring Machine Learning Engineer</p>
+                
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/atultiwari4950" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/atultiwari01" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/i.am.atul07" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:atultiwari4950@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about-section">
+            <h2 class="section-title">About Me</h2>
+            <p>I am a passionate Computer Science student specializing in Artificial Intelligence and Machine Learning. With a strong foundation in programming and a keen interest in cutting-edge technologies, I am dedicated to developing innovative solutions that can make a meaningful impact. My academic journey and personal projects reflect my commitment to continuous learning and pushing the boundaries of technology.</p>
+        </section>
+
+        <section class="section skills-section">
+            <h2 class="section-title">Skills & Interests</h2>
+            <div class="skills-list">
+                <span class="skill-tag">C</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">Data Structures</span>
+                <span class="skill-tag">Algorithms</span>
+                <span class="skill-tag">Machine Learning</span>
+            </div>
+        </section>
+
+        <section class="section education-section">
+            <h2 class="section-title">Education</h2>
+            <div>
+                <h3 class="neon-glow">B.Tech in Computer Science and Engineering (AI-ML)</h3>
+                <p>KCCITM, Greater Noida, Uttar Pradesh</p>
+                <br>
+                <h3 class="neon-glow">High School</h3>
+                <p>Cosmos Public School, South Delhi</p>
+            </div>
+        </section>
+
+        <section class="section goals-section">
+            <h2 class="section-title">Current Learning & Goals</h2>
+            <div class="goals-list">
+                <span class="goal-tag">Advanced ML Algorithms</span>
+                <span class="goal-tag">TensorFlow</span>
+                <span class="goal-tag">PyTorch</span>
+                <span class="goal-tag">End-to-End ML Models</span>
+                <span class="goal-tag">AI Applications</span>
+                <span class="goal-tag">Open Source Contribution</span>
+                <span class="goal-tag">NLP</span>
+                <span class="goal-tag">Computer Vision</span>
+            </div>
+        </section>
+
+        <section class="contact-info">
+            <h2 class="section-title">Contact Information</h2>
+            <p><strong>LinkedIn:</strong> www.linkedin.com/in/atultiwari4950</p>
+            <p><strong>Instagram:</strong> @i.am.atul07</p>
+            <p><strong>GitHub:</strong> github.com/atultiwari01</p>
+            <p><strong>Email:</strong> atultiwari4950@gmail.com</p>
+        </section>
+    </div>
+
+    <script>
+        // Particle-like Background Effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            document.body.appendChild(particle);
+
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.width = Math.random() * 5 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.backgroundColor = Math.random() > 0.5 ? 'var(--neon-blue)' : 'var(--neon-pink)';
+            particle.style.position = 'fixed';
+            particle.style.borderRadius = '50%';
+            particle.style.opacity = Math.random();
+            particle.style.zIndex = -2;
+
+            // Animate particle
+            const animationDuration = Math.random() * 10 + 5;
+            particle.style.animation = `moveParticle ${animationDuration}s linear infinite`;
+
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, animationDuration * 1000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Add style for particle animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes moveParticle {
+                0% {
+                    transform: translate(-100%, -100%) scale(0);
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(100vw, 100vh) scale(1);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
